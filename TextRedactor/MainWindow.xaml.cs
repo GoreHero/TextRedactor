@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TextRedactor;
 
 namespace WpfApp1_lab3
 {
@@ -76,6 +79,46 @@ namespace WpfApp1_lab3
         {
             if (textBox != null)
                 textBox.Foreground = Brushes.Red;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы(*.*|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                textBox.Text = File.ReadAllText(openFileDialog.FileName);
+            }
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы(*.*|*.*";
+            if (saveFileDialog.ShowDialog()==true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, textBox.Text);
+            }
+
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            WindowPravka windowPravka = new WindowPravka();
+            windowPravka.WindowStyle = WindowStyle.ToolWindow;
+            windowPravka.ShowDialog();
+        }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+            Window1 window1 = new Window1();
+            window1.WindowStyle = WindowStyle.ToolWindow;
+            window1.ShowDialog();
         }
     }
 }
