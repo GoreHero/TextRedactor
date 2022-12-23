@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1_lab3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500
-        " Width="800" Background="#FF0EA2B5">
+        Title="MainWindow" Height="500" Width="850" Background="#FF0EA2B5">
+    <Window.CommandBindings>
+
+        <CommandBinding Command="local:MyCommands.Exit" Executed="ExitExecuted"/>
+        <CommandBinding Command="Open" Executed="OpenExecuted"/>
+        <CommandBinding Command="Save" Executed="SaveExecuted"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,14 +19,18 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Menu Margin="5" Padding="5">
-            <MenuItem Header="_Файл" Click="MenuItem_Click_2">
-                <MenuItem Header="_Открыть" Click="MenuItem_Click"/>
-                <MenuItem Header="_Сохранить" Click="MenuItem_Click_1"/>
+            <MenuItem Header="_Файл">
+                <MenuItem Header="_Открыть" Command="Open"/>
+                <MenuItem Header="_Сохранить" Command="Save"/>
                 <Separator />
-                <MenuItem Header="_Выход"/>
+
+                <MenuItem Command="local:MyCommands.Exit"/>
             </MenuItem>
-            <MenuItem Header="_Правка" Click="MenuItem_Click_3"/>
-            <MenuItem Header="_Справка" Click="MenuItem_Click_4"/>           
+            <MenuItem Header="_Правка">
+                <MenuItem Header="Копировать" Command="Copy"/>
+                <MenuItem Header="Вставить" Command="Paste"/>
+            </MenuItem>
+            <MenuItem Header="_Справка" Click="MenuItem_Click_4"/>
         </Menu>
         <ToolBar Grid.Row="1" Background="#FF0EA2B5">
             <ToolBar Margin="5" Padding="5" Background="#FF97B0CC">
@@ -41,11 +50,11 @@
                     <Image Source="DATA/Jirno.png" Margin="5"/>
                 </ToggleButton>
                 <Separator/>
-                <ToggleButton Width="40" Click="Button_Click_1" IsChecked="False">
+                <ToggleButton Width="40" Height="40" Click="Button_Click_1" IsChecked="False">
                     <Image Source="DATA/kursiv.png" Margin="5"/>
                 </ToggleButton>
                 <Separator/>
-                <ToggleButton Width="40" Height="40" Click="Button_Click_2" IsChecked="False">
+                <ToggleButton Width="60" Height="40" Click="Button_Click_2" IsChecked="False">
                     <Image Source="DATA/podcherknut.png" Margin="5" Width="40"/>
                 </ToggleButton>
                 <Separator/>
