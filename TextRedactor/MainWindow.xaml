@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1_lab3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="850" Background="#FF0EA2B5" Foreground="#FF7D5858" WindowStyle="None">
+        Title="MainWindow" Height="500" Width="1000" Style="{DynamicResource WindowStyle}" Opacity="0.9" WindowStyle="None">
     <Window.CommandBindings>
         <CommandBinding Command="local:MyCommands.Exit" Executed="ExitExecuted"/>
         <CommandBinding Command="Open" Executed="OpenExecuted"/>
@@ -17,22 +17,33 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu Margin="5,5,5,5" Padding="5" Grid.ColumnSpan="2">
-            <MenuItem Header="_Файл">
-                <MenuItem Header="_Открыть" Command="Open"/>
-                <MenuItem Header="_Сохранить" Command="Save"/>
-                <Separator />
 
-                <MenuItem Command="local:MyCommands.Exit"/>
-            </MenuItem>
-            <MenuItem Header="_Правка">
-                <MenuItem Header="Копировать" Command="Copy"/>
-                <MenuItem Header="Вставить" Command="Paste"/>
-            </MenuItem>
-            <MenuItem Header="_Справка" Click="MenuItem_Click_4"/>
-        </Menu>
-        <ToolBar Grid.Row="1" Background="#FF0EA2B5" Grid.ColumnSpan="2">
-            <ToolBar Margin="5" Padding="5" Background="#FF97B0CC">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Menu Margin="5,5,5,5" Padding="5" Background="{x:Null}" Grid.Column="0">
+                <MenuItem Header="_Файл">
+                    <MenuItem Header="_Открыть" Command="Open"/>
+                    <MenuItem Header="_Сохранить" Command="Save"/>
+                    <Separator />
+                    <MenuItem Command="local:MyCommands.Exit"/>
+                </MenuItem>
+                <MenuItem Header="_Правка">
+                    <MenuItem Header="Копировать" Command="Copy"/>
+                    <MenuItem Header="Вставить" Command="Paste"/>
+                </MenuItem>
+                <MenuItem Header="_Справка" Click="MenuItem_Click_4"/>
+
+            </Menu>
+            <Button Content=" Выход " Grid.ColumnSpan="1" HorizontalAlignment="Right" Margin="0,0,0,0" Grid.Column="1" Command="local:MyCommands.Exit"/>
+        </Grid>
+        <ToolBar Grid.Row="1" Grid.ColumnSpan="2">
+            <ToolBar Margin="5" Padding="5" Opacity="1" UseLayoutRounding="False">
+                <ToolBar.Background>
+                    <SolidColorBrush Opacity="0.5"/>
+                </ToolBar.Background>
                 <ComboBox Margin="5"
                           Padding="5"
                           SelectedIndex="0" 
@@ -50,7 +61,7 @@
 
 
             </ToolBar>
-            <ToolBar Margin="5" Padding="5" Background="#FF97B0CC">
+            <ToolBar Margin="5" Padding="5">
                 <ToggleButton Height="40" Click="Button_Click" IsChecked="False">
                     <Image Source="DATA/Jirno.png" Margin="5"/>
                 </ToggleButton>
@@ -64,12 +75,20 @@
                 </ToggleButton>
                 <Separator/>
             </ToolBar>
-            <ToolBar Margin="5" Padding="5" Background="#FF97B0CC">
+            <ToolBar Margin="5" Padding="5" FontSize="14">
                 <StackPanel VerticalAlignment="Center">
                     <RadioButton Content="Черный" IsChecked="True" Checked="RadioButton_Checked"/>
                     <RadioButton Content="Красный" Foreground="Red" Checked="RadioButton_Checked_1" />
                 </StackPanel>
+                <ComboBox Name="themes"
+                          Width="150" SelectedIndex="0"
+                          Margin="5" SelectionChanged="themes_SelectionChanged">
+                    <TextBlock Text="Светлая"/>
+                    <TextBlock Text="Темная"/>
+
+                </ComboBox>
             </ToolBar>
+
         </ToolBar>
         <TextBox x:Name="textBox" Grid.Row="2" Margin="5,5,5,5" Padding="5" FontSize="16" FontFamily="Arial" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
     </Grid>
