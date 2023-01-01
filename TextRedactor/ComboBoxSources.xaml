@@ -16,6 +16,12 @@
         <sys:Int32>12</sys:Int32>
         <sys:Int32>16</sys:Int32>
         <sys:Int32>20</sys:Int32>
+        <sys:Int32>22</sys:Int32>
+        <sys:Int32>24</sys:Int32>
+        <sys:Int32>26</sys:Int32>
+        <sys:Int32>30</sys:Int32>
+        <sys:Int32>40</sys:Int32>
+        <sys:Int32>72</sys:Int32>
 
     </col:ArrayList>
 
